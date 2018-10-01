@@ -99,22 +99,12 @@ public class auto_database    {
   private void remove_Entry(String[][] auto_dataset, String name, String model, String reg_no)
    {
 	  int f, position = 0;
-	  
-	  // This methods optimizes performanse by removing an entry in auto_database and copying the last element
-	  // int database over it. This way all entries do not have to be copied over the previous entry and
-	  // slowing the performace time. - finally datab_size is reduced by 1 and the last entry removed.
-	  
+	   
       for(f=0;f<datab_size;f++)
 	  {
         if (auto_dataset[0][f].equals(name) && auto_dataset[1][f].equals(model) && auto_dataset[2][f].equals(reg_no) )
            
-		   { 
-		   
-		    // auto_dataset[0][f] = auto_dataset[0][datab_size-1];   auto_dataset[1][f] = auto_dataset[1][datab_size-1];
-		    // auto_dataset[2][f] = auto_dataset[2][datab_size-1];  auto_dataset[3][f] = auto_dataset[3][datab_size-1]; 
-			// auto_dataset[4][f] = auto_dataset[4][datab_size-1]; 
-			// auto_dataset[5][f] = auto_dataset[5][datab_size-1];   auto_dataset[6][f] = auto_dataset[6][datab_size-1];
-			 
+		   {	 
 			 position = f;
 	       }
 	     }

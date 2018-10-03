@@ -1,3 +1,4 @@
+package p1;
 
 import java.util.* ; 
 import java.lang.* ;
@@ -10,7 +11,7 @@ public class auto_database    {
 	
   public void auto_database()
   {
-     auto_dataset = new String[7][140];
+     String[][] auto_dataset = new String[7][140];
      datab_size=0; 	 
  
   } 
@@ -56,6 +57,7 @@ public class auto_database    {
 		 {
  		     values = line.split(";",7);	
 		   
+		    
        	     auto_dataset[0][datab_size] = values[0];
 		     auto_dataset[1][datab_size]= values[1];
 		   
@@ -75,7 +77,7 @@ public class auto_database    {
  
  
  
-  private void add_Entry(String[][] auto_dataset, String name, String model, String reg_no , int year , String kats_date, String motor_size, String motor_power)
+  public void add_Entry(String[][] auto_dataset, String name, String model, String reg_no , int year , String kats_date, String motor_size, String motor_power)
    {
 	   // This method adds entry to the end of data_base
 	  
@@ -96,7 +98,7 @@ public class auto_database    {
    }
   
   
-  private void remove_Entry(String[][] auto_dataset, String name, String model, String reg_no)
+  public void remove_Entry(String[][] auto_dataset, String name, String model, String reg_no)
    {
 	  int f, position = 0;
 	   
@@ -123,7 +125,7 @@ public class auto_database    {
    }
 	  	  
 	  
-  private void remove_last_entry(String[][] auto_dataset, int size)
+  public void remove_last_entry(String[][] auto_dataset, int size)
   {
 	 auto_dataset[0][size] = null;  auto_dataset[1][size] = null;  auto_dataset[2][size] = null;  auto_dataset[3][size] = null;
      auto_dataset[4][size] = null;  auto_dataset[5][size] = null; auto_dataset[6][size] = null;
@@ -131,37 +133,47 @@ public class auto_database    {
 	 datab_size -= 1;   
 	
   }
-   private int search_auto(String[][] auto_dataset, String name, String model, int year)
+   public int search_auto(String[][] auto_dataset, String reg_no)
    {
 	  // method result value is the index where name, model and year are correct (-1 if no entry matches)  
-	  String year_string = Integer.toString( year);  
+	    
 	  int f=0;
       int resu = -1; // returns -1 if automodel not found
 	  
       while( (resu == -1) && ( f<datab_size))
 	  {
-       if (   (auto_dataset[0][f].equals(name)) && (auto_dataset[1][f].equals(model)) && (auto_dataset[2][f].equals( year_string) ) )  resu = f;
+       if (   auto_dataset[2][f].equals(reg_no) )  resu = f;
+	   f+=1;
 	   
 	  }  
 	  return resu;
    }
 	   
-    private void modify_entry(String[][] auto_dataset, String name, String model, int year, String new_motor_size, String new_motor_power , String new_kats_date, String new_rek_no)
+    public void modify_entry(String[][] auto_dataset, String name,  String reg_no, String new_reg_no, int year, int new_year)
 	{
-	  int index = search_auto(auto_dataset, name, model, year) ;
-      if (index == -1) return;  // if return_value = -1  -> no entry found in the database. 	  
-	  // this method modifies entry only if it is already in the database.
+	  int index = search_auto(auto_dataset, reg_no) ;
+      if (index > -1)  // if return_value = -1  -> no entry found in the database. 	  
+	  {
+        auto_dataset[2][index] = new_reg_no;
+		auto_dataset[3][index] = Integer.toString(new_year);
+
+	  }	  
 		
 		
 	}
   
   
   
-   private  void query_Product(String[][] auto_dataset, String product)
+    public  void print_entry(String[][] auto_dataset, String reg_no, int f)
    {
+	    System.out.println(" ");
+	    System.out.println("Found car with reg-no: " + reg_no + " with details:");  
+	    System.out.println("Name:" + auto_dataset[0][f] + ", model: " +  auto_dataset[1][f]  + ",reg-no: "  + auto_dataset[2][f] + " ");
+	    System.out.print("Model year:" + auto_dataset[3][f] + ", kts-date: " +  auto_dataset[4][f]  + ", motor-size: "  + auto_dataset[5][f] + " ");
+	    System.out.println(", motor-power:" + auto_dataset[6][f]); 
 	 
    }	
-    private void printAll(String[][] auto_dataset)
+    public void printAll(String[][] auto_dataset)
 	{
       int f;
 	  System.out.println(" Contents of all autos in current data set :");	   
@@ -178,11 +190,23 @@ public class auto_database    {
 	}
    
    
-	private void print_Product_details(String[][] auto_dataset, String product)
+	public void print_motor_size( String[][] auto_dataset, String motor_value)
 	{
-      int f, g;		 
-  
-     } 
+	  int f, motor_size , limit;
+      limit = Integer.parseInt(motor_value);	
+	  
+	    System.out.println(" ");
+       System.out.println(" Found cars with motor-size over limit: " + motor_value );	   
+      for(f=0;f<datab_size;f++)
+	  {
+		 motor_size =  Integer.parseInt( auto_dataset[5][f] ); 
+		if ( motor_size > limit)  
+        {System.out.print( auto_dataset[0][f] + " " +  auto_dataset[1][f]  + " "  + auto_dataset[2][f] + " ");
+	     System.out.print( auto_dataset[3][f] + " " +  auto_dataset[4][f]  + " "  + auto_dataset[5][f] + " ");
+	     System.out.println( auto_dataset[6][f]); 
+		}  
+	   }		
+	 } 
 		
 	
 	

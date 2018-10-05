@@ -20,11 +20,13 @@ public class modify_tester    {
 	  auto_database dbase = new auto_database();
 	  dbase.readAutodata_fromCSV(auto_dataset2);
 
-	    System.out.println("Testing modifying: \n  Give new REG-NO and MODEL-YEAR to car : ( Ford, F4, TLA-420, 2010, '7.8.2018' ,330,350) ");
+	  // This tester program modifies two entries in the dataset, both REG-No and MODEL-YEAR
+	  
+	  System.out.println("Testing modifying: \n  Give new REG-NO and MODEL-YEAR to car : ( Ford, F4, TLA-420, 2010, '7.8.2018' ,330,350) ");
 		
 	  System.out.println("Enter : modify (NEW-REG-NO)   (NEW-MODEL-YEAR)");
 	  	  
-	  try { read = co.readLine(); } catch(Exception e) {}
+	  try { read = co.readLine(); } catch(Exception e) {e.printStackTrace();}
 	   
 	  in_read= read.split(" ");
 	  
@@ -42,7 +44,7 @@ public class modify_tester    {
 	  System.out.println("Enter : modify (NEW-REG-NO)   (NEW-MODEL-YEAR)"); 
      
 	   	  
-	  try { read = co.readLine(); } catch(Exception e) {}
+	  try { read = co.readLine(); } catch(Exception e) { e.printStackTrace(); }
 	   
 	  in_read= read.split(" ");
 	  

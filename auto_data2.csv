@@ -1,0 +1,11 @@
+name;model;reg-no;year;kts-date;motor-size;motor-power
+Audi;A7;ADF-548;2012;'"2.4.2018";400;400
+Audi;A8;DFE-239;2013;"3.5.2018";380;390
+Ford;F4;TLA-420;2010;"7.8.2018";330;350
+Ford;F7;DFT-418;2011;"7.4.2018";325;370
+Toyota;Corolla;YLD-728;2008;"2.9.2018";320;360
+Toyota;Corolla;KAD-778;2009;"8.9.2018";320;360
+Renault;DE8;OID-435;2010;"4.8.2018";310;370
+Renault;CA9;EEL-814;2011;"7.4.2018";340;370
+Lancia;Lan4;OOT-889;1999;"4.2.2018";320;290
+Lancia;Lan8;TTL-771;1997;"2.8.2018";290;298

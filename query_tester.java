@@ -10,7 +10,7 @@ public class query_tester    {
 	
    public static void main(String args[]) throws IOException
     {
-      int f;
+      int f , query_limit=0;
 	  Console co = System.console();
 	  String read= null;
 	  String[] in_read = new String[8];
@@ -21,37 +21,32 @@ public class query_tester    {
 	  dbase.readAutodata_fromCSV(auto_dataset2);
 	  
 	  System.out.println("Here query car details from dataset.");
-	  System.out.println("Enter :  find  reg (reg-no)       - to find a certain register number car.   ..   or  ");
-	  System.out.println("         find  motor > (value)   - to find a all models with motor-size over a limit.");
+	  
+	  while (query_limit < 8 )
+	  {
+	  System.out.println("Enter :  find  carname (reg-no)       - to find a car  with a producers name    ..   or  ");
+	  System.out.println("         find  model   (model)   - to find a all models with a give value. ... ");
+	  System.out.println("         find  year   (min_year) (max_year) - to find a cars with model year between min & max ");
 	  	  
-	  try { read = co.readLine(); } catch(Exception e) {}
+	  try { read = co.readLine(); } catch(Exception e) {e.printStackTrace();}
 	   
 	  in_read= read.split(" ");
 	  
-	  if ((in_read[0].equals("find")) && (in_read[1].equals("reg") ))
-	  {  index =  dbase.search_auto(auto_dataset2, in_read[2]);  
-         dbase.print_entry(auto_dataset2, in_read[2], index); }
-		
-      if ((in_read[0].equals("find")) && (in_read[1].equals("motor"))  && (in_read[2].equals(">")) ) 
+	  if ((in_read[0].equals("find")) && (in_read[1].equals("carname") ))  // this verifies that car name is what the query is for
+	  {  dbase.query_dataset( auto_dataset2, 2, in_read[2] , " ");  }
+         		
+      if ((in_read[0].equals("find")) && (in_read[1].equals("model") ) )  // this verifies that car model is what the query is for 
 	  {    
-         dbase.print_motor_size(auto_dataset2, in_read[3]); }
-		 
-		 
-      System.out.println(" ");
-	  System.out.println("Query other car with same commands: ");
-	   	  
-	  try { read = co.readLine(); } catch(Exception e) {}
+	  dbase.query_dataset( auto_dataset2, 3, in_read[2] , " ");   }
+	  
+	  if ((in_read[0].equals("find")) && (in_read[1].equals("year") ) ) 
+	  {    
+	  dbase.query_dataset( auto_dataset2, 1, in_read[2] ,  in_read[3]);   }
 	   
-	  in_read= read.split(" ");
-	  
-	  if ((in_read[0].equals("find")) && (in_read[1].equals("reg") ))
-	  {  index =  dbase.search_auto(auto_dataset2, in_read[2]);  
-         dbase.print_entry(auto_dataset2, in_read[2], index); }
+	  System.out.println(" \n "); 
+	  query_limit += 1; 
+	  } 
 		 
-	  if ((in_read[0].equals("find")) && (in_read[1].equals("motor"))  && (in_read[2].equals(">")) ) 
-	    {     dbase.print_motor_size(auto_dataset2, in_read[3]); }
-	  
-	  
   
- }
+	}
 }
